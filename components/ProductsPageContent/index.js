@@ -1,5 +1,5 @@
 import { useState } from "react";
-import List from "./list";
+import List from "./List";
 
 const ProductsContent = () => {
     const [orderProductsOpen, setOrderProductsOpen] = useState(false);
