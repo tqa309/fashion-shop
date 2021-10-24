@@ -2,14 +2,16 @@ import Head from "next/head";
 import Header from "../components/Header";
 import { useRouter } from "next/router";
 
-export default ({ children, title = "Next.js Ecommerce" }) => {
+const Layout404 = ({ children, title = "" }) => {
     const router = useRouter();
     const pathname = router.pathname;
+
+    const pageTitle = title ? title : 'Không tìm thấy trang bạn yêu cầu'
 
     return (
         <div className="app-main">
             <Head>
-                <title>Không tìm thấy trang &mdash; {title}</title>
+                <title>{pageTitle}</title>
             </Head>
 
             <Header isErrorPage />
@@ -20,3 +22,5 @@ export default ({ children, title = "Next.js Ecommerce" }) => {
         </div>
     );
 };
+
+export default Layout404;

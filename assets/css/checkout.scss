@@ -165,4 +165,10 @@
         background-color: red;
       }
     }
+
+    &.message--success {
+      color: green;
+      font-size: 15px;
+      text-align: center;
+    }
   }

@@ -2,7 +2,7 @@ import Head from "next/head";
 import Header from "../components/Header";
 import { useRouter } from "next/router";
 
-export default ({ children, title = "Next.js Ecommerce" }) => {
+const MainLayout = ({ children, title = "QA-Shop | Giải pháp mua sắm cả tủ đồ cho nam giới" }) => {
     const router = useRouter();
     const pathname = router.pathname;
 
@@ -20,3 +20,5 @@ export default ({ children, title = "Next.js Ecommerce" }) => {
         </div>
     );
 };
+
+export default MainLayout

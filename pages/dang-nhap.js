@@ -1,17 +1,29 @@
 import Layout from "../layouts/Main";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { server } from "../utils/server";
-import { postData } from "../utils/services";
+import { login } from "../store/actions/auth.actions";
+import { useDispatch, useSelector } from "react-redux";
+import Router from "next/router";
+import { useEffect } from "react";
 
 const LoginPage = () => {
     const { register, handleSubmit, errors } = useForm();
 
-    const onSubmit = async (data) => {
-        const res = await postData(`${server}/api/dang-nhap`, {
-            email: data.email,
-            password: data.password,
-        });
+    const dispatch = useDispatch();
+
+    const auth = useSelector((state) => state.auth);
+
+    if (auth.token) {
+        Router.push("/");
+    }
+
+    const onSubmit = (data) => {
+        dispatch(
+            login({
+                email: data.email,
+                password: data.password,
+            })
+        );
     };
 
     return (
@@ -49,11 +61,7 @@ const LoginPage = () => {
                                     className="form__input"
                                     placeholder="Địa chỉ email"
                                     type="text"
-                                    {...register("email", {
-                                        required: true,
-                                        pattern:
-                                            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                                    })}
+                                    {...register("email")}
                                 />
 
                                 {errors?.email &&
@@ -76,10 +84,7 @@ const LoginPage = () => {
                                     className="form__input"
                                     type="password"
                                     placeholder="Mật khẩu"
-                                    name="password"
-                                    {...register("password", {
-                                        required: true,
-                                    })}
+                                    {...register("password")}
                                 />
                                 {errors?.password &&
                                     errors.password.type === "required" && (
@@ -98,9 +103,7 @@ const LoginPage = () => {
                                         <input
                                             type="checkbox"
                                             id="check-signed-in"
-                                            {...register("keepSigned", {
-                                                required: true,
-                                            })}
+                                            {...register("keepSigned")}
                                         />
                                         <span className="checkbox__check"></span>
                                         <p>Ghi nhớ đăng nhập</p>

@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useOnClickOutside from "use-onclickoutside";
 import Logo from "../assets/icons/logo";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { logout } from "../store/actions/auth.actions";
 
 const Header = ({ isErrorPage }) => {
     const router = useRouter();
@@ -35,6 +36,8 @@ const Header = ({ isErrorPage }) => {
         window.onscroll = function () {
             headerClass();
         };
+
+        return 
     }, []);
 
     const closeMenu = () => {
@@ -48,6 +51,17 @@ const Header = ({ isErrorPage }) => {
     // on click outside
     useOnClickOutside(navRef, closeMenu);
     useOnClickOutside(searchRef, closeSearch);
+
+    // Logout
+    const auth = useSelector(state => state.auth)
+    
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        dispatch(logout({
+            token: auth.token
+        }))
+    }
 
     return (
         <header className={`site-header ${!onTop ? "site-header--fixed" : ""}`}>
@@ -70,6 +84,10 @@ const Header = ({ isErrorPage }) => {
                     <a href="#">Bộ sưu tập</a>
                     <a href="/gio-hang">Giỏ hàng</a>
                     <a href="/dang-nhap">Tài khoản</a>
+                    {
+                        auth?.token &&
+                        <a href="#" onClick={handleLogout}>Đăng xuất</a>
+                    }
                 </nav>
 
                 <div className="site-header__actions">
@@ -87,7 +105,7 @@ const Header = ({ isErrorPage }) => {
                             <input
                                 type="text"
                                 name="search"
-                                placeholder="Enter the product you are looking for"
+                                placeholder="Bạn muốn tìm gì..."
                             />
                         </form>
                         <i

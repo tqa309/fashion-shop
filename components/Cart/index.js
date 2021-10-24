@@ -63,13 +63,13 @@ const ShoppingCart = () => {
                     </a>
                     <input
                         type="text"
-                        placeholder="Promo Code"
+                        placeholder="Mã giảm giá"
                         className="cart__promo-code"
                     />
 
                     <div className="cart-actions__items-wrapper">
                         <p className="cart-actions__total">
-                            Tổng tiền <strong>${priceTotal.toFixed(2)}</strong>
+                            Tổng tiền <strong>{priceTotal.toFixed(0)}đ</strong>
                         </p>
                         <a
                             href="/gio-hang/thanh-toan"
