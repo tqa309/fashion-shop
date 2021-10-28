@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'http://103.9.156.147:8000/api/auth/';
+const url = 'https://server.digiviet.xyz/api/auth/';
 
 export const login = (data) => axios.post(url + 'login', data);
 export const logout = (token) => axios.post(url + 'logout', token);
