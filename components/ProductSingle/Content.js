@@ -55,7 +55,7 @@ const Content = ({ product }) => {
                 <h2 className="product__name">{product.name}</h2>
 
                 <div className="product__prices">
-                    <h4>${product.currentPrice}</h4>
+                    <h4>{product.currentPrice}</h4>
                     {product.discount && <span>${product.price}</span>}
                 </div>
             </div>

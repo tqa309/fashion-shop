@@ -70,7 +70,7 @@ const Header = ({ isErrorPage }) => {
                     <a>
                         <h1 className="site-logo">
                             <Logo />
-                            QA-Shop
+                            Digiviet
                         </h1>
                     </a>
                 </Link>
@@ -81,8 +81,10 @@ const Header = ({ isErrorPage }) => {
                     <Link href="/tat-ca-san-pham">
                         <a>Tất cả sản phẩm</a>
                     </Link>
-                    <a href="#">Bộ sưu tập</a>
-                    <a href="/gio-hang">Giỏ hàng</a>
+                    <a href="#">Áo</a>
+                    <a href="#">Quần</a>
+                    <a href="#">Phụ kiện</a>
+                    <a href="#">Blog</a>
                     <a href="/dang-nhap">Tài khoản</a>
                     {
                         auth?.token &&
@@ -108,10 +110,6 @@ const Header = ({ isErrorPage }) => {
                                 placeholder="Bạn muốn tìm gì..."
                             />
                         </form>
-                        <i
-                            onClick={() => setSearchOpen(!searchOpen)}
-                            className="icon-search"
-                        ></i>
                     </button>
                     <Link href="/gio-hang">
                         <button className="btn-cart">

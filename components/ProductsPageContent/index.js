@@ -39,7 +39,7 @@ const ProductsContent = () => {
                         <h4>Sắp xếp theo: </h4>
                         <div className="select-wrapper">
                             <select>
-                                <option>Độ phổ biến</option>
+                                <option>Giá thấp đến cao</option>
                             </select>
                         </div>
                     </div>

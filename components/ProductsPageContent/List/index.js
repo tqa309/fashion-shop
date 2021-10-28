@@ -1,10 +1,11 @@
 import useSwr from "swr";
+import { server } from "../../../utils/server";
 import ProductItem from "./../../ProductItem";
 import ProductsLoading from "./Loading";
 
 const ProductsContent = () => {
     const fetcher = (url) => fetch(url).then((res) => res.json());
-    const { data, error } = useSwr("/api/products", fetcher);
+    const { data, error } = useSwr(`${server}/api/products`, fetcher);
 
     if (error) return <div>Không thể tải thông tin người dùng</div>;
     return (

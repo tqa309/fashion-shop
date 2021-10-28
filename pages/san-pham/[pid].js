@@ -14,8 +14,8 @@ import Reviews from "../../components/ProductSingle/Reviews";
 
 export async function getServerSideProps({ query }) {
     const pid = query.pid;	
-const res = await fetch(`${server}/api/product/${pid}`);
-	    const product = await res.json();
+    const res = await fetch(`${server}/api/product/${pid}`);
+	const product = await res.json();
 
   return {
     props: { product },

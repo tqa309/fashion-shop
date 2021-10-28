@@ -1,7 +1,8 @@
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { activateAccount } from "../store/actions/auth.actions";
 import LayoutError from "../layouts/404";
+import { useDispatch } from "react-redux";
 
 const ErrorPage = () => {
     const [countdown, setCountdown] = useState(5);

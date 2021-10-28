@@ -2,7 +2,7 @@ import Head from "next/head";
 import Header from "../components/Header";
 import { useRouter } from "next/router";
 
-const MainLayout = ({ children, title = "QA-Shop | Giải pháp mua sắm cả tủ đồ cho nam giới" }) => {
+const MainLayout = ({ children, title = "Digiviet | Giải pháp mua sắm cả tủ đồ cho nam giới" }) => {
     const router = useRouter();
     const pathname = router.pathname;
 
