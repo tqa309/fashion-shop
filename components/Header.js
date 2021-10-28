@@ -85,7 +85,6 @@ const Header = ({ isErrorPage }) => {
                     <a href="#">Quần</a>
                     <a href="#">Phụ kiện</a>
                     <a href="#">Blog</a>
-                    <a href="/dang-nhap">Tài khoản</a>
                     {
                         auth?.token &&
                         <a href="#" onClick={handleLogout}>Đăng xuất</a>

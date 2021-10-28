@@ -239,11 +239,6 @@
         border: none;
         background-color: transparent;
       }
-      a:last-child {
-        @include breakpoint(tablet-lg) {
-          display: none;
-        }
-      }
       &.site-nav--open {
         right: 0;
 
