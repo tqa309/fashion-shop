@@ -22,7 +22,7 @@ export default class CustomDocument extends Document {
             <html lang="en">
                 <Head>
                     {/* We only want to add the scripts if in production */}
-                    {isProduction && (
+                    {true && (
                         <Fragment>
                             {/* Global Site Tag (gtag.js) - Google Analytics */}
                             <script
