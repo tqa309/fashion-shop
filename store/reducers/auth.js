@@ -10,7 +10,6 @@ import {
 const authReducer = (auth = {}, action) => {
     switch (action.type) {
         case LOGIN:
-            console.log(action.payload, "payload");
             return action.payload;
         case LOGOUT:
             if (action.payload) return {};
@@ -22,7 +21,6 @@ const authReducer = (auth = {}, action) => {
         case FORGOT_PASSWORD:
             return action.payload;
         case RESET_PASSWORD:
-            console.log(action.payload, "payload");
             return action.payload;
         default:
             return auth;

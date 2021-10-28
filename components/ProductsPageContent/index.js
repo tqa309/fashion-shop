@@ -5,10 +5,6 @@ import List from "./List";
 const ProductsContent = () => {
     const [orderProductsOpen, setOrderProductsOpen] = useState(false);
 
-    const auth = useSelector((state) => state);
-
-    console.log(auth, "quan-ly");
-
     return (
         <section className="products-content">
             <div className="products-content__intro">

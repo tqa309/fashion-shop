@@ -5,8 +5,6 @@ import { useSelector } from "react-redux";
 const Admin = ({ children }) => {
     const auth = useSelector((state) => state.auth);
 
-    console.log(auth, "quan-ly");
-    
     return <>{children}</>;
 };
 
