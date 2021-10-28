@@ -4,7 +4,7 @@ import ProductsLoading from "./Loading";
 
 const ProductsContent = () => {
     const fetcher = (url) => fetch(url).then((res) => res.json());
-    const { data, error } = useSwr("https://next-ecommerce-front.vercel.app/api/products", fetcher);
+    const { data, error } = useSwr("/api/products", fetcher);
 
     if (error) return <div>Không thể tải thông tin người dùng</div>;
     return (

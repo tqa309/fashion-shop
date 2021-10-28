@@ -3,7 +3,7 @@ import useSwr from "swr";
 
 const ProductsFeatured = () => {
     const fetcher = (url) => fetch(url).then((res) => res.json());
-    const { data } = useSwr("https://next-ecommerce-front.vercel.app/api/products", fetcher);
+    const { data } = useSwr("/api/products", fetcher);
 
     return (
         <section className="section section-products-featured">

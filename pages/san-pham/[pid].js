@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useSwr from "swr";
 import Footer from "../../components/Footer";
 import Layout from "../../layouts/Main";
 import Breadcrumb from "../../components/Breadcrumb";
@@ -9,16 +10,16 @@ import Description from "../../components/ProductSingle/Description";
 import { server } from "../../utils/server";
 import Reviews from "../../components/ProductSingle/Reviews";
 
-export async function getServerSideProps({ query }) {
-    const pid = query.pid;
-    const res = await fetch(`${server}/api/product/${pid}`);
-    const product = await res.json();
 
-    return {
-        props: {
-            product,
-        },
-    };
+
+export async function getServerSideProps({ query }) {
+    const pid = query.pid;	
+const res = await fetch(`${server}/api/product/${pid}`);
+	    const product = await res.json();
+
+  return {
+    props: { product },
+  }
 }
 
 const Product = ({ product }) => {
