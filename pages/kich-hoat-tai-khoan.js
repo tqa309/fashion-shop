@@ -1,5 +1,6 @@
 import Router from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { activateAccount } from "../store/actions/auth.actions";
 import LayoutError from "../layouts/404";
 
 const ErrorPage = () => {
@@ -8,6 +9,18 @@ const ErrorPage = () => {
     setTimeout(() => setCountdown((prev) => prev - 1), 1000);
 
     setTimeout(() => Router.push("/"), 5000);
+
+    const dispatch = useDispatch();
+
+    const { query } = useRouter();
+
+    useEffect(() => {
+        dispatch(
+            activateAccount({
+                token: query.token
+            })
+        );
+    }, [])
 
     return (
         <LayoutError title={"Kích hoạt tài khoản"}>

@@ -1,5 +1,5 @@
 import * as authApi from '../../api/auth';
-import { LOGIN, LOGOUT, REGISTER, FORGOT_PASSWORD, RESET_PASSWORD } from '../../utils/actionConstants';
+import { LOGIN, LOGOUT, REGISTER, FORGOT_PASSWORD, RESET_PASSWORD, ACTIVATE_ACCOUNT } from '../../utils/actionConstants';
 
 export const login = (loginData) => async (dispatch) => {
     try {
@@ -46,6 +46,16 @@ export const resetPassword = (data) => async (dispatch) => {
         const { data } = await authApi.resetPassword(data);
 
         dispatch({ type: RESET_PASSWORD, payload: data });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const activateAccount = (data) => async (dispatch) => {
+    try {
+        const { data } = await authApi.activateAccount(data);
+
+        dispatch({ type: ACTIVATE_ACCOUNT, payload: data });
     } catch (error) {
         console.log(error);
     }

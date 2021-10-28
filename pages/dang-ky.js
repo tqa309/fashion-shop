@@ -3,13 +3,20 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { register as signup } from "../store/actions/auth.actions";
+import { useState } from "react";
 
 const RegisterPage = () => {
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+
+    const [successMessage, setSuccessMessage] = useState(null);
 
     const dispatch = useDispatch();
-    
+
     const onSubmit = (data) => {
+        if (Object.keys(errors).length === 0) setSuccessMessage(true);
+
+        reset({});
+
         dispatch(
             signup({
                 name: data.name,
@@ -56,8 +63,13 @@ const RegisterPage = () => {
                                     className="form__input"
                                     placeholder="Họ và tên"
                                     type="text"
-                                    {...register("name")}
+                                    {...register("name", { required: true})}
                                 />
+                                {errors.name && (
+                                            <p className="message message--error">
+                                                Vui lòng nhập tên
+                                            </p>
+                                        )}
                             </div>
 
                             <div className="form__input-row">
@@ -65,8 +77,15 @@ const RegisterPage = () => {
                                     className="form__input"
                                     placeholder="Địa chỉ email"
                                     type="text"
-                                    {...register("email")}
+                                    {...register("email", {
+                                        required: true,
+                                    })}
                                 />
+                                {errors.email && (
+                                            <p className="message message--error">
+                                                Vui lòng nhập email
+                                            </p>
+                                        )}
                             </div>
 
                             <div className="form__input-row">
@@ -74,28 +93,49 @@ const RegisterPage = () => {
                                     className="form__input"
                                     type="Password"
                                     placeholder="Mật khẩu"
-                                    {...register("password")}
+                                    {...register("password",{
+                                        required: true,
+                                    })}
                                 />
+                                {errors.password && (
+                                            <p className="message message--error">
+                                                Vui lòng nhập mật khẩu
+                                            </p>
+                                        )}
                             </div>
 
                             <div className="form__info">
                                 <div className="checkbox-wrapper">
                                     <label
-                                        htmlFor="check-signed-in"
+                                        htmlFor="checkAgree"
                                         className={`checkbox checkbox--sm`}
                                     >
+                                        <input
+                                            type="checkbox"
+                                            id="checkAgree"
+                                            {...register("checkAgree", {
+                                                required: true,
+                                            })}
+                                        />
                                         <span className="checkbox__check"></span>
-                                        <p>
-                                            Tôi đồng ý với chính sách và điều
-                                            khoản bảo mật
-                                        </p>
+                                        <p>Tôi đồng ý với chính sách và điều
+                                            khoản bảo mật</p>
                                     </label>
+                                    {errors.checkAgree && (
+                                            <p className="message message--error">
+                                                Vui lòng đồng ý để thực hiện
+                                                đăng ký
+                                            </p>
+                                        )}
                                 </div>
                             </div>
 
-                            <p className="message message--success">
-                                ✓ Đăng ký thành công. Vui lòng mở email để kích hoạt!
-                            </p>
+                            {successMessage && (
+                                <p className="message message--success">
+                                    ✓ Đăng ký thành công. Vui lòng mở email để
+                                    kích hoạt!
+                                </p>
+                            )}
 
                             <button
                                 type="submit"

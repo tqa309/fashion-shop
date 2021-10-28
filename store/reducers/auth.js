@@ -4,9 +4,10 @@ import {
     REGISTER,
     RESET_PASSWORD,
     FORGOT_PASSWORD,
+    ACTIVATE_ACCOUNT,
 } from "../../utils/actionConstants";
 
-const authReducer = (auth = {hello: "hello"}, action) => {
+const authReducer = (auth = {}, action) => {
     switch (action.type) {
         case LOGIN:
             console.log(action.payload, "payload");
@@ -15,6 +16,8 @@ const authReducer = (auth = {hello: "hello"}, action) => {
             if (action.payload) return {};
             return auth;
         case REGISTER:
+            return action.payload;
+        case ACTIVATE_ACCOUNT:
             return action.payload;
         case FORGOT_PASSWORD:
             return action.payload;

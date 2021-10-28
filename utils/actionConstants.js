@@ -3,6 +3,8 @@ export const LOGOUT = "LOGOUT";
 export const REGISTER = "REGISTER";
 export const FORGOT_PASSWORD = "FORGOT_PASSWORD";
 export const RESET_PASSWORD = "RESET_PASSWORD";
+export const ACTIVATE_ACCOUNT = "ACTIVATE_ACCOUNT";
+
 
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
