@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import Document, { Head, Main, NextScript } from "next/document";
 
+
 export default class CustomDocument extends Document {
     static async getInitialProps(ctx) {
         const originalRenderPage = ctx.renderPage;

@@ -13,9 +13,13 @@ const LoginPage = () => {
 
     const auth = useSelector((state) => state.auth);
 
-    if (auth.token) {
-        Router.push("/");
-    }
+    useEffect(() => {    
+        if (auth.user?.role === 'admin') {
+            Router.push("/quan-ly");
+        } else if (auth.token) {
+            Router.push("/");
+        }
+    }, [auth])
 
     const onSubmit = (data) => {
         dispatch(
@@ -64,7 +68,12 @@ const LoginPage = () => {
                                     {...register("email")}
                                     autoComplete="off"
                                 />
-
+{
+                                auth.error &&
+                                <p className="message message--error">
+                                            {auth.error}
+                                        </p>
+                            }
                                 {errors?.email &&
                                     errors.email.type === "required" && (
                                         <p className="message message--error">

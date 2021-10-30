@@ -1,4 +1,5 @@
 export const LOGIN = "LOGIN";
+export const LOGIN_ERROR = "LOGIN_ERROR";
 export const LOGOUT = "LOGOUT";
 export const REGISTER = "REGISTER";
 export const FORGOT_PASSWORD = "FORGOT_PASSWORD";

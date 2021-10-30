@@ -54,6 +54,8 @@ const Header = ({ isErrorPage }) => {
 
     // Logout
     const auth = useSelector(state => state.auth)
+
+
     
     const dispatch = useDispatch();
 

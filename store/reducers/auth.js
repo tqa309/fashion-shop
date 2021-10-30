@@ -5,6 +5,7 @@ import {
     RESET_PASSWORD,
     FORGOT_PASSWORD,
     ACTIVATE_ACCOUNT,
+    LOGIN_ERROR,
 } from "../../utils/actionConstants";
 
 const authReducer = (auth = {}, action) => {
@@ -22,6 +23,10 @@ const authReducer = (auth = {}, action) => {
             return action.payload;
         case RESET_PASSWORD:
             return action.payload;
+        case LOGIN_ERROR:
+            return {
+                error: 'Email hoặc mật khẩu không đúng'
+            };
         default:
             return auth;
     }

@@ -2,9 +2,6 @@ import { HYDRATE } from "next-redux-wrapper";
 import { remove } from "lodash";
 
 const initialState = {
-    user: {
-        name: "Lucas Pulliese",
-    },
     favProducts: [],
 };
 

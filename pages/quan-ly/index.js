@@ -1,9 +1,21 @@
-import Layout from "../../layouts/Main";
-// import Link from "next/link";
-import AdminDashboard from "../../components/Admin/Dashboard";
-import Admin from "../../components/Admin";
+import { useDispatch, useSelector } from "react-redux";
+import Router from "next/router";
+import Link from "next/link";
+import { logout } from "../../store/actions/auth.actions";
 
-function AdminIndex() {
+const AdminIndex = () => {
+
+    const auth = useSelector((state) => state.auth);
+
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        dispatch(logout({
+            token: auth.token
+        }))
+        Router.push('/')
+    }
+
     return (
         <div class="container-scroller">
     <link rel="stylesheet" href="/skydash_admin/feather.css"/>
@@ -19,8 +31,8 @@ function AdminIndex() {
   <link rel="stylesheet" href="/skydash_admin/style.css"/>
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" ><img src="/skydash_admin/logo.png" class="mr-2" alt="logo" /></a>
-        <a class="navbar-brand brand-logo-mini" ><img src="/skydash_admin/logo-mini.png" alt="logo" /></a>
+        <Link href="/"><a class="navbar-brand brand-logo mr-5" ><img src="/skydash_admin/logo.png" class="mr-2" alt="logo" /></a></Link>
+        <Link href="/"><a class="navbar-brand brand-logo-mini" ><img src="/skydash_admin/logo-mini.png" alt="logo" /></a></Link>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         
@@ -254,6 +266,11 @@ function AdminIndex() {
               <span class="menu-title">Tùy chỉnh</span>
             </a>
           </li>
+          <li class="nav-item" onClick={handleLogout}>
+            <a class="nav-link" >
+              <span class="menu-title">Đăng xuất</span>
+            </a>
+          </li>
         </ul>
       </nav>
       
@@ -310,16 +327,16 @@ function AdminIndex() {
                     <div class="card-body">
                       <p class="mb-4">Đơn hàng tuần này</p>
                       <p class="fs-30 mb-2">42</p>
-                      <p>10.00% (30 ngày)</p>
+                      <p>+10.00% (7 ngày)</p>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6 mb-4 stretch-card transparent">
                   <div class="card card-dark-blue">
                     <div class="card-body">
-                      <p class="mb-4">Tổng đơn</p>
-                      <p class="fs-30 mb-2">989</p>
-                      <p>22.00% (30 ngày)</p>
+                      <p class="mb-4">Tổng đơn tháng</p>
+                      <p class="fs-30 mb-2">168</p>
+                      <p>+22.00% (30 ngày)</p>
                     </div>
                   </div>
                 </div>
@@ -328,18 +345,18 @@ function AdminIndex() {
                 <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
                   <div class="card card-light-blue">
                     <div class="card-body">
-                      <p class="mb-4">Số lượng cuộc họp</p>
-                      <p class="fs-30 mb-2">34040</p>
-                      <p>2.00% (30 ngày)</p>
+                      <p class="mb-4">Khách cũ</p>
+                      <p class="fs-30 mb-2">75</p>
+                      <p>+5.00% (30 ngày)</p>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6 stretch-card transparent">
                   <div class="card card-light-danger">
                     <div class="card-body">
-                      <p class="mb-4">Số lượng khách</p>
-                      <p class="fs-30 mb-2">421</p>
-                      <p>0.22% (30 ngày)</p>
+                      <p class="mb-4">Khách mới</p>
+                      <p class="fs-30 mb-2">91</p>
+                      <p>+12.22% (30 ngày)</p>
                     </div>
                   </div>
                 </div>
