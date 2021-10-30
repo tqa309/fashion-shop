@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { login } from "../store/actions/auth.actions";
 import { useDispatch, useSelector } from "react-redux";
 import Router from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const LoginPage = () => {
     const { register, handleSubmit, errors } = useForm();
@@ -12,6 +12,8 @@ const LoginPage = () => {
     const dispatch = useDispatch();
 
     const auth = useSelector((state) => state.auth);
+
+    const [emailIsFocused, setEmailIsFocused] = useState(false)
 
     useEffect(() => {    
         if (auth.user?.role === 'admin') {
@@ -22,6 +24,7 @@ const LoginPage = () => {
     }, [auth])
 
     const onSubmit = (data) => {
+        setEmailIsFocused(false)
         dispatch(
             login({
                 email: data.email,
@@ -65,11 +68,12 @@ const LoginPage = () => {
                                     className="form__input"
                                     placeholder="Địa chỉ email"
                                     type="text"
+                                    onFocus={() => {setEmailIsFocused(true)}}
                                     {...register("email")}
                                     autoComplete="off"
                                 />
 {
-                                auth.error &&
+                                !emailIsFocused && auth.error &&
                                 <p className="message message--error">
                                             {auth.error}
                                         </p>
